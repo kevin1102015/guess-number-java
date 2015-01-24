@@ -23,6 +23,7 @@ public class CompareNumber {
             return "0A0B";
         }
 
-        return null;
+        return aCount + "A" + (containsCount - aCount) + "B";
     }
+
 }
