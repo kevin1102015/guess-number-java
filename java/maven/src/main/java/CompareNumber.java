@@ -3,18 +3,17 @@
  */
 public class CompareNumber {
     public String getTips(String input, String answer) {
-        if (input.equals(answer)) {
+        int aCount = 0;
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) == answer.charAt(i)) {
+                aCount++;
+            }
+        }
+        if (aCount == 4) {
             return "4A0B";
         }
 
-        int count = 0;
-        for (int i = 0; i < input.length(); i++) {
-            if (answer.contains(String.valueOf(input.charAt(i)))) {
-                count++;
-            }
-        }
-
-        if (count == 0) {
+        if (aCount == 0) {
             return "0A4B";
         }
 
