@@ -53,4 +53,23 @@ public class NumberGeneratorTest {
 
         assertThat(numbers.size()).isEqualTo(3);
     }
+
+    @Test
+    public void should_be_able_to_repeat_out_of_3_times(){
+        Random random = mock(Random.class);
+        given(random.nextInt(10))
+                .willReturn(1, 2, 3, 4)
+                .willReturn(1, 5, 7, 8)
+                .willReturn(2, 3, 4, 5)
+                .willReturn(1, 2, 3, 4);
+        NumberGenerator numberGenerator = new NumberGenerator(random);
+        HashSet<String> numbers = new HashSet<String>();
+
+        numbers.add(numberGenerator.generate());
+        numbers.add(numberGenerator.generate());
+        numbers.add(numberGenerator.generate());
+        numbers.add(numberGenerator.generate());
+
+        assertThat(numbers.size()).isEqualTo(3);
+    }
 }

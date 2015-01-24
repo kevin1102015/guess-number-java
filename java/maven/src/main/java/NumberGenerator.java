@@ -18,6 +18,9 @@ public class NumberGenerator {
         while (historyGenerateDigits.contains(number)) {
             number = generateOnce();
         }
+        if (historyGenerateDigits.size() == 2) {
+            historyGenerateDigits.remove(0);
+        }
         historyGenerateDigits.add(number);
         return number;
     }
