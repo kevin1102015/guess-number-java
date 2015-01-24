@@ -27,12 +27,12 @@ public class GameProcess {
             out.println("Please input your answer(" + count + "): ");
             String answer = reader.readLine();
             result = compareNumber.getTips(input, answer);
-            out.println(result);
-            count--;
             if ("4A0B".equals(result)) {
                 out.println("Congratulate, you win!");
                 return;
             }
+            out.println(result);
+            count--;
         }
         out.println("Game over!");
     }

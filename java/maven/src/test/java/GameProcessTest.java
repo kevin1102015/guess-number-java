@@ -89,8 +89,8 @@ public class GameProcessTest {
 
         inOrder.verify(out).println("Welcome!");
         inOrder.verify(out).println("Please input your answer(6): ");
-        inOrder.verify(out).println("4A0B");
         inOrder.verify(out).println("Congratulate, you win!");
-        inOrder.verify(out, never()).println("Please input your answer(5): ");
+        inOrder.verify(out, never()).println("4A0B");
+        inOrder.verify(out,never()).println("Game over!");
     }
 }
