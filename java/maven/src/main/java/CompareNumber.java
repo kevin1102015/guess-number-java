@@ -14,7 +14,7 @@ public class CompareNumber {
         }
 
         if (aCount == 0) {
-            return "0A4B";
+            return "0A0B";
         }
 
         return null;
