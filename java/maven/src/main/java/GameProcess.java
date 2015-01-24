@@ -33,6 +33,10 @@ public class GameProcess {
                 out.println("Game over!");
                 return;
             }
+            if ("4A0B".equals(result)) {
+                out.println("Congratulate, you win!");
+                return;
+            }
         }
     }
 }
