@@ -17,7 +17,6 @@ public class NumberGeneratorTest {
         String number = new NumberGenerator(new Random()).generate();
         assertThat(number.length()).isEqualTo(4);
     }
-
     @Test
     public void should_generate_number(){
         String number = new NumberGenerator(new Random()).generate();
@@ -27,7 +26,6 @@ public class NumberGeneratorTest {
             fail("result should be number.");
         }
     }
-    
     @Test
     public void should_generate_no_duplicate_digits_string(){
         String number = new NumberGenerator(new Random()).generate();
@@ -35,7 +33,6 @@ public class NumberGeneratorTest {
             assertThat(number.indexOf(number.charAt(i))).isEqualTo(number.lastIndexOf(number.charAt(i)));
         }
     }
-
     @Test
     public void should_not_repeat_3_times() {
         Random random = mock(Random.class);
@@ -53,7 +50,6 @@ public class NumberGeneratorTest {
 
         assertThat(numbers.size()).isEqualTo(3);
     }
-
     @Test
     public void should_be_able_to_repeat_out_of_3_times(){
         Random random = mock(Random.class);
