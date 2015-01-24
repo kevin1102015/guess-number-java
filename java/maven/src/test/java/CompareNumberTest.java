@@ -53,5 +53,5 @@ public class CompareNumberTest {
         assertThat(result).isEqualTo("1A1B");
     }
 
-    
+
 }
