@@ -17,6 +17,7 @@ public class GameProcessTest {
     private GameProcess game;
     private BufferedReader reader;
     private NumberGenerator numberGenerator;
+    private InOrder inOrder;
 
     @Before
     public void set_up() throws IOException {
@@ -29,6 +30,7 @@ public class GameProcessTest {
         game = new GameProcess(out,reader,numberGenerator,compareNumber);
         given(reader.readLine()).willReturn("1234");
         given(numberGenerator.generate()).willReturn("4321");
+        inOrder = inOrder(out);
     }
 
     @Test
@@ -44,7 +46,6 @@ public class GameProcessTest {
     public void should_print_please_input_you_answer_when_game_started() throws IOException {
         game.start();
 
-        InOrder inOrder = inOrder(out);
         inOrder.verify(out).println("Welcome!");
         inOrder.verify(out).println("Please input your answer(6): ");
     }
@@ -53,7 +54,6 @@ public class GameProcessTest {
     public void should_reduce_one_chance_when_guess_wrong() throws IOException {
         game.start();
 
-        InOrder inOrder = inOrder(out);
         inOrder.verify(out).println("Welcome!");
         inOrder.verify(out).println("Please input your answer(6): ");
         inOrder.verify(out).println("0A4B");
@@ -64,7 +64,6 @@ public class GameProcessTest {
     public void should_reduce_chance_one_by_one_until_game_over() throws IOException {
         game.start();
 
-        InOrder inOrder = inOrder(out);
         inOrder.verify(out).println("Welcome!");
         inOrder.verify(out).println("Please input your answer(6): ");
         inOrder.verify(out).println("0A4B");
@@ -88,7 +87,6 @@ public class GameProcessTest {
 
         game.start();
 
-        InOrder inOrder = inOrder(out);
         inOrder.verify(out).println("Welcome!");
         inOrder.verify(out).println("Please input your answer(6): ");
         inOrder.verify(out).println("4A0B");
