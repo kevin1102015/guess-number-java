@@ -2,8 +2,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InOrder;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintStream;
 
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
 /**
@@ -12,15 +15,24 @@ import static org.mockito.Mockito.*;
 public class GameProcessTest {
     private PrintStream out;
     private GameProcess game;
+    private BufferedReader reader;
+    private NumberGenerator numberGenerator;
 
     @Before
-    public void set_up() {
+    public void set_up() throws IOException {
         out = mock(PrintStream.class);
-        game = new GameProcess(out);
+
+        reader = mock(BufferedReader.class);
+        numberGenerator = mock(NumberGenerator.class);
+        CompareNumber compareNumber = new CompareNumber();
+
+        game = new GameProcess(out,reader,numberGenerator,compareNumber);
+        given(reader.readLine()).willReturn("1234");
+        given(numberGenerator.generate()).willReturn("4321");
     }
 
     @Test
-    public void should_print_welcome() {
+    public void should_print_welcome() throws IOException {
         verify(out, never()).println("Welcome!");
 
         game.start();
@@ -29,11 +41,22 @@ public class GameProcessTest {
     }
 
     @Test
-    public void should_print_please_input_you_answer_when_game_started() {
+    public void should_print_please_input_you_answer_when_game_started() throws IOException {
         game.start();
 
         InOrder inOrder = inOrder(out);
         inOrder.verify(out).println("Welcome!");
         inOrder.verify(out).println("Please input your answer(6): ");
+    }
+
+    @Test
+    public void should_reduce_one_chance_when_guess_wrong() throws IOException {
+        game.start();
+
+        InOrder inOrder = inOrder(out);
+        inOrder.verify(out).println("Welcome!");
+        inOrder.verify(out).println("Please input your answer(6): ");
+        inOrder.verify(out).println("0A4B");
+        inOrder.verify(out).println("Please input your answer(5): ");
     }
 }
