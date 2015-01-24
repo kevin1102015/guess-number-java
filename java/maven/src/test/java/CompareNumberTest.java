@@ -38,6 +38,6 @@ public class CompareNumberTest {
         String result = new CompareNumber().getTips(input, answer);
         assertThat(result).isEqualTo("1A1B");
     }
-
-
 }
+
+
