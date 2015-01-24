@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InOrder;
 
@@ -9,11 +10,17 @@ import static org.mockito.Mockito.*;
  * Created by zhouyong on 1/24/15.
  */
 public class GameProcessTest {
+    private PrintStream out;
+    private GameProcess game;
+
+    @Before
+    public void set_up() {
+        out = mock(PrintStream.class);
+        game = new GameProcess(out);
+    }
+
     @Test
     public void should_print_welcome() {
-        PrintStream out = mock(PrintStream.class);
-        GameProcess game = new GameProcess(out);
-
         verify(out, never()).println("Welcome!");
 
         game.start();
@@ -23,9 +30,6 @@ public class GameProcessTest {
 
     @Test
     public void should_print_please_input_you_answer_when_game_started() {
-        PrintStream out = mock(PrintStream.class);
-        GameProcess game = new GameProcess(out);
-
         game.start();
 
         InOrder inOrder = inOrder(out);
