@@ -108,4 +108,28 @@ public class GameProcessTest {
         inOrder.verify(out,never()).println("Game over!");
 
     }
+
+    @Test
+    public void should_congratulate_when_input_is_right_on_last_round() throws IOException {
+        given(reader.readLine()).willReturn("1234","1234","1234","1234","1234")
+                .willReturn("4321");
+
+        game.start();
+
+        inOrder.verify(out).println("Welcome!");
+        inOrder.verify(out).println("Please input your answer(6): ");
+        inOrder.verify(out).println("0A4B");
+        inOrder.verify(out).println("Please input your answer(5): ");
+        inOrder.verify(out).println("0A4B");
+        inOrder.verify(out).println("Please input your answer(4): ");
+        inOrder.verify(out).println("0A4B");
+        inOrder.verify(out).println("Please input your answer(3): ");
+        inOrder.verify(out).println("0A4B");
+        inOrder.verify(out).println("Please input your answer(2): ");
+        inOrder.verify(out).println("0A4B");
+        inOrder.verify(out).println("Please input your answer(1): ");
+        inOrder.verify(out).println("Congratulate, you win!");
+        inOrder.verify(out, never()).println("4A0B");
+        inOrder.verify(out,never()).println("Game over!");
+    }
 }
