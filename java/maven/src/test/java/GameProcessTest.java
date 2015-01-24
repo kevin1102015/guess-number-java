@@ -59,4 +59,26 @@ public class GameProcessTest {
         inOrder.verify(out).println("0A4B");
         inOrder.verify(out).println("Please input your answer(5): ");
     }
+
+    @Test
+    public void should_reduce_chance_one_by_one_until_game_over() throws IOException {
+        game.start();
+
+        InOrder inOrder = inOrder(out);
+        inOrder.verify(out).println("Welcome!");
+        inOrder.verify(out).println("Please input your answer(6): ");
+        inOrder.verify(out).println("0A4B");
+        inOrder.verify(out).println("Please input your answer(5): ");
+        inOrder.verify(out).println("0A4B");
+        inOrder.verify(out).println("Please input your answer(4): ");
+        inOrder.verify(out).println("0A4B");
+        inOrder.verify(out).println("Please input your answer(3): ");
+        inOrder.verify(out).println("0A4B");
+        inOrder.verify(out).println("Please input your answer(2): ");
+        inOrder.verify(out).println("0A4B");
+        inOrder.verify(out).println("Please input your answer(1): ");
+        inOrder.verify(out).println("0A4B");
+        inOrder.verify(out).println("Game over!");
+
+    }
 }

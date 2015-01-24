@@ -20,13 +20,19 @@ public class GameProcess {
 
     public void start() throws IOException {
         out.println("Welcome!");
-        out.println("Please input your answer(6): ");
+        int count = 6;
+        String result = "";
         String input = numberGenerator.generate();
-        String answer = reader.readLine();
-        String result = compareNumber.getTips(input, answer);
-        out.println(result);
-        if (!"4A0B".equals(result)) {
-            out.println("Please input your answer(5): ");
+        while (!"4A0B".equals(result)) {
+            out.println("Please input your answer(" + count + "): ");
+            String answer = reader.readLine();
+            result = compareNumber.getTips(input, answer);
+            out.println(result);
+            count--;
+            if (count == 0) {
+                out.println("Game over!");
+                return;
+            }
         }
     }
 }
