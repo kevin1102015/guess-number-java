@@ -24,3 +24,4 @@ workshop过程
 - 自带笔记本
 - IntelliJ CE 装好
 - clone本项目，执行mvn test能通过
+# java-demo
